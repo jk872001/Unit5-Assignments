@@ -10,16 +10,18 @@ const api="http://localhost:8080/users"
 const initialstate=
 {
 name:"",
-email:"",
-contact:"",
-address:""
+age:"",
+address:"",
+department:"",
+salary:"",
+martialStatus:""
 };
 
 
 function App() {
   const [state, setState]= useState(initialstate);
   const [data, setData] = useState([]);
-  const {name, email, contact, address} =state;
+  const {name, age, address, department,salary,martialStatus} =state;
   const [userId, setUserId] = useState(null);
   const [editMode, setEditMode] = useState(false);
   
@@ -61,7 +63,7 @@ function App() {
 
   const handleSubmit = (e) => {
   e.preventDefault();
-  if (!name || !address || !email || !contact) {
+  if (!name || !age || !address || !department || !salary || !martialStatus) {
   toast.error("Please fill all input field");
   } else {
     if(!editMode)
@@ -70,7 +72,7 @@ function App() {
       axios.post(`${api}`, state);
       toast.success ("Added Successfully");
       setState({ name:"",
-      email: "", contact: "", address:""
+      age: "", address: "", department:"",salary:"",martialStatus:"",
       });
       setTimeout(() => loadusers(), 500);
     }
@@ -79,7 +81,7 @@ function App() {
       
       axios.put(`${api}/${userId}`, state);
       toast.success ("Updates Successfully");
-      setState({ name: "", email: "", contact:"",address:""})
+      setState({ name: "", age: "", address:"",department:"",salary:"",martialStatus:""})
       setTimeout( () => loadusers(), 500);
       setUserId(null);
       setEditMode(false);
@@ -96,12 +98,12 @@ function App() {
      <ToastContainer />
      <Navbar bg="primary" variant="dark" className="justify-content-center">
      <Navbar.Brand>
-     Masai Top Students 
+     Employee Details
      </Navbar.Brand>
      </Navbar>
      <Container style={{ marginTop: "7@px" }}>
          <Row>
-         <Col md={4}>
+         <Col md={6}>
 <Form onSubmit={handleSubmit}>
 <Form.Group>
 <Form.Label style={{ textAlign: "left" }}>Name</Form.Label>
@@ -114,32 +116,52 @@ onChange={handleChange}
 />
 </Form.Group>
 <Form.Group>
-<Form.Label style={{ textAlign: "left" }}>Email</Form.Label>
+<Form.Label style={{ textAlign: "left" }}>Age</Form.Label>
 <Form.Control
-type="email"
-placeholder="Enter the email"
-name="email"
-value={email}
+type="age"
+placeholder="Enter the Age"
+name="age"
+value={age}
 onChange={handleChange}
 />
 </Form.Group>
 <Form.Group>
-<Form.Label style={{ textAlign: "left" }}>Student Code</Form.Label>
+<Form.Label style={{ textAlign: "left" }}>Address</Form.Label>
 <Form.Control
 type="text"
-placeholder="Enter the Student Code"
-name="contact"
-value={contact}
+placeholder="Enter the Address"
+name="address"
+value={address}
 onChange={handleChange}
 />
 </Form.Group>
 <Form.Group>
-<Form.Label style={{ textAlign: "left" }}>Rank</Form.Label>
+<Form.Label style={{ textAlign: "left" }}>Department</Form.Label>
+<Form.Control
+type="text"
+placeholder="Enter the Department"
+name="department"
+value={department}
+onChange={handleChange}
+/>
+</Form.Group>
+<Form.Group>
+<Form.Label style={{ textAlign: "left" }}>Salary</Form.Label>
 <Form.Control
 type="number"
-placeholder="Enter the Rank"
-name="address"
-value={address}
+placeholder="Enter the Salary"
+name="salary"
+value={salary}
+onChange={handleChange}
+/>
+</Form.Group>
+<Form.Group>
+<Form.Label style={{ textAlign: "left" }}>Martial Status</Form.Label>
+<Form.Control
+type="text"
+placeholder="Enter the Yes or No"
+name="martialStatus"
+value={martialStatus}
 onChange={handleChange}
 />
 </Form.Group>
@@ -153,16 +175,19 @@ onChange={handleChange}
 </Form>
 
          </Col>
-         <Col md={8}>
+         <Col md={10}>
          <Table bordered hover>
 <thead>
 <tr>
 <th>No.</th>
 <th>Name</th>
-<th>Email</th>
-<th>Student Code</th>
-<th>Rank</th>
+<th>Age</th>
+<th>Address</th>
+<th>Department</th>
+<th>Salary</th>
+<th>Martial Status</th>
 <th>Action</th>
+
 </tr>
 </thead>
 {data && data.map((item, index) => (
@@ -170,9 +195,11 @@ onChange={handleChange}
 <tr>
 <td>{index+1}</td>
 <td>{item.name}</td>
-<td>{item.email}</td>
-<td>{item.contact}</td>
+<td>{item.age}</td>
 <td>{item.address}</td>
+<td>{item.department}</td>
+<td>{item.salary}</td>
+<td>{item.martialStatus}</td>
 <td>
 <ButtonGroup>
 <Button 
