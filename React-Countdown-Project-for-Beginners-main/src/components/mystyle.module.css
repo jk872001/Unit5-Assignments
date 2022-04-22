@@ -1,0 +1,12 @@
+.component{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 300px;
+    background: #f1d196;
+  }
+  .text{
+      font-size: 30px;
+      font-weight: 600;
+  }
