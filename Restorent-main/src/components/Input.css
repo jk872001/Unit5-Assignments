@@ -1,0 +1,31 @@
+.Input{
+ border: 1px solid black;   
+ height: 470px;
+ width: 60%;
+ margin-left: 20%;
+ background-color: coral;
+margin-top: 30px;
+}
+
+input{
+    height: 30px;
+    width: 300px;
+    margin: 5px;
+    border: 2px solid teal;
+    font-size: 20px;
+  
+}
+.button{
+background-color: teal;
+color: wheat;
+border-radius: 8px;
+margin-top: 20px;
+width: 80px;
+}
+.button:hover{
+height: 40px;
+margin-top: 12px;
+border: 2px solid ;
+width: 90px;
+
+}
