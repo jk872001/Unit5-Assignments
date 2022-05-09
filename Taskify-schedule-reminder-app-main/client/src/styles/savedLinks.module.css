@@ -1,0 +1,107 @@
+.savedLinks_container{
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transition: 1s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    border: 1px solid gray;
+    padding: 20px;
+    padding-top: 0;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    width: 50%;
+    height: 500px;
+    border: 6px solid #406882;
+    overflow: auto;
+}
+
+.savedLinks_container::-webkit-scrollbar{
+    width: 10px;
+    margin-right: 12px;
+}
+.savedLinks_container::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #406882; 
+    border-radius: 10px;
+}
+.savedLinks_container::-webkit-scrollbar-thumb{
+    background:#6998AB; 
+    border-radius: 10px;
+}
+.savedLinks_container::-webkit-scrollbar-thumb:hover {
+    background: #406882; 
+}
+.cut {
+    margin: 5px 0;
+    margin-left: auto;
+    border: none;
+    outline: none;
+    background: none;
+    color: orangered;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 5px;
+    border-radius: 50%;
+}
+
+.cut:hover {
+    background-color: orangered;
+    color: #fff;
+}
+.cut:active {
+    transform: scale(0.9);
+}
+
+.saved_nav{
+    background-color: #1A374D;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.saved_nav > input {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 3px 2px;
+}
+
+.saved_cards {
+    background-color: #B1D0E0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+    padding: 5px 10px;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.saved_cards>a:nth-child(1) {
+    font-size: 16px;
+    font-weight: 600;
+    color: #B1D0E0;
+    text-decoration: none;
+    /* border: 1px solid red; */
+    background-color: #406882;
+    padding: 2px;
+    width: 80%;
+    border-radius: 5px;
+}
+.saved_cards > button {
+    background: none;
+    border: none;
+    outline: none;
+    color: orangered;
+    font-size: 20px;
+    cursor: pointer;
+
+}
+
+.saved_cards > button:active {
+    transform: scale(0.8);
+}
