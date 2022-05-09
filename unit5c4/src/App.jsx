@@ -1,6 +1,8 @@
 import { Home } from "./components/Home";
 import { Login } from "./components/Login";
 import { Logout } from "./components/Logout";
+import { Signin} from "./components/Signin";
+
 import { NewOrder } from "./components/NewOrder";
 import { Orders } from "./components/Orders";
 import { ProtectedRoute } from "./components/ProtextedRoute";
@@ -17,6 +19,9 @@ function App() {
          <div className="navbar">
             <Link className="nav-home" to="/">
                Home
+            </Link>
+            <Link className="nav-home" to="/signin">
+               Signin
             </Link>
             {/* Show either login or logout below */}
 
@@ -41,6 +46,7 @@ function App() {
         /neworder   NewOrder  Protected
         */}
             <Route path="/" element={<Home />} />
+            <Route path="/signin" element={<Signin />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route
