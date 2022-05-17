@@ -1,30 +1,32 @@
 import { Link } from "react-router-dom";
 import { useContext, useEffect,useState } from "react";
-import { StyleDiv,UnderDiv } from "./Mydiv";
+import { StyleDiv } from "./Mydiv";
 // import { Deal } from "./Deal";
-// import { CartContext } from "../Contexts/Cartcontext";
+import { CartContext } from "./Contexts/Cartcontext";
+import { Cart } from "./Cart";
 // import { ThemeContext } from "../Contexts/ThemeContext";
 // import { AuthContext } from "../Contexts/loginContext";
 
 export const Cards=()=>{
     const [Data,setdata]=useState([]);
-    // const {handleLength}=useContext(CartContext);
+    const {cart}=useContext(CartContext);
+    console.log(cart);
+    const {handleLength}=useContext(CartContext);
     // const {Theme}=useContext(ThemeContext);
-    // const {isAuth}=useContext(AuthContext);
-
+    // const {isAuth}=useContext(AuthContext)
 useEffect(()=>{
 getData();
-// handleLength()
+handleLength()
 
 },[]);
 
 async function getData() {
-    const data=await fetch("http://localhost:8080/data").then(d=>d.json());
+    const data=await fetch("http://localhost:8080/item").then(d=>d.json());
      setdata(data);
     //  console.log(data);
 }
 async function handleChange(e){
-    const data=await fetch("http://localhost:8080/data").then(d=>d.json());
+    const data=await fetch("http://localhost:8080/item").then(d=>d.json());
 if(e.target.value=="All"){
     getData();
 }else{
@@ -99,20 +101,25 @@ setdata(data);
 
                 Rs.{e.original_price}</p>
                 <p>{e.description}</p>
+               
              <button
               onClick={()=>{
                  
                   getData()
                 const data=e;
-               fetch("http://localhost:8080/data",{
+               fetch("http://localhost:8080/cart",{
                    method:"POST",
                  headers:{
                      "content-type":"application/json"
                  },
                  body:JSON.stringify(data)
                })
-            //    handleLength();
-            }}>Add To Cart</button>
+               handleLength();
+
+            }}
+            
+            >Add To Cart</button>
+               
          </div>
      </div>
 

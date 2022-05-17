@@ -1,0 +1,14 @@
+.main{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border: 1px solid black;
+}
+/* .part1{
+    border: 1px sold blue;
+    width: 50%;
+}
+.part2{
+    border: 1px sold blue;
+    width: 50%;
+} */

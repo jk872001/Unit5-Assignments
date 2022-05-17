@@ -1,10 +1,10 @@
 import { useContext, useEffect,useState } from "react";
-import { CartContext } from "../Contexts/Cartcontext";
+import { CartContext } from "./Contexts/Cartcontext"
 // import { ThemeContext } from "../Contexts/ThemeContext";
 import { StyleDiv } from "./Mydiv";
 import { Navigate } from "react-router-dom";
 // import { AuthContext } from "../Contexts/loginContext";
-
+import  "./Cart.css";
 export const Cart=()=>{
     const [Data,setdata]=useState([]);
     const {handleLength}=useContext(CartContext);
@@ -15,6 +15,24 @@ useEffect(()=>{
 getData();
 handleLength();
 },[]);
+const updateqty = async(id,quant)=>{
+    let data = {"quant":quant}
+    let response =  await fetch(`http://localhost:8080/cart/${id}`, {
+                method: "PATCH",
+                body: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+
+          let res =  await fetch("http://localhost:8080/cart");
+          let final = await res.json();
+          console.log("final",final)
+          setdata(final)
+        // let final = await response.json();
+    //    console.log("final",final)
+            // handleLength();
+}
 
 // if(!isAuth){
 
@@ -22,38 +40,85 @@ handleLength();
 //  }
 
 async function getData() {
-    const data=await fetch("http://localhost:8080/data").then(d=>d.json());
+    const data=await fetch("http://localhost:8080/cart").then(d=>d.json());
      setdata(data);
     //  console.log(data);
 }
 
-    return (<StyleDiv >{Data.map((e)=>(
+    return (
+    
+    <div className="main">
+    <div className="part1" style={{margin:"10px" ,border:"1px solid blue",width:"50%",justifyContent:"center",justifyItems:"center",alignItems:"center",alignContent:"center"}}>
+    {Data.map((e)=>(
 
       
-     <div style={{width:"70%",border:"1px solid black"}}>
-     <img width={"200px"} height={"120px"} src={e.img_url} alt=""/>
+     
+     
           
           
-          <div >
-              <h4>{e.name}</h4>
-              <p>Rs.{e.final_price}</p>
-              <p style={{textDecoration:"line-through"}}>
- 
-                 Rs.{e.original_price}</p>
-                 <p>{e.description}</p>
-             <button
+          <div style={{display:"flex",border:"1px solid red",width:"90%",}}>
+            <p style={{margin:"10px 0px 10px 30px"}}>{e.id}</p>
+              <p style={{margin:"10px 0px 10px 30px"}}>{e.name}</p>
+              
+              
+                 
+                 <div style={{marginLeft:"80px",display:"flex",border:"1px solid red"}} >
+                 <p style={{margin:"10px 0px 10px 30px"}} onClick={()=>{updateqty(e.id,e.quant+1)
+                //    handleLength();
+                 }}>{"+"}</p>
+                 <p style={{margin:"10px 0px 10px 30px"}}>{e.quant}</p>
+                 <p style={{margin:"10px 0px 10px 30px"}} onClick={()=>{updateqty(e.id,e.quant-1)
+                //    handleLength();
+                 }}>{"-"}</p>
+                 </div>
+             <button style={{margin:"10px 0px 10px 30px"}}
               onClick={()=>{
-                  handleLength();
+                 
                 const data=e;
-               fetch(`http://localhost:8080/data/${data.id}`,{
+               fetch(`http://localhost:8080/cart/${data.id}`,{
                    method:"DELETE"
                })
+               
 getData();
+handleLength();
             }}>Delete from Cart</button>
-         </div>
+           
+        
      </div>
 
 
 
-    ))}</StyleDiv>)
+    ))}
+    </div>
+    <div className="part2" style={{margin:"10px" ,border:"1px solid blue",width:"50%",justifyContent:"center",justifyItems:"center",alignItems:"center",alignContent:"center"}}>
+    <p>Price Details</p>
+    {Data.map((e)=>(
+
+      
+     
+     
+          
+          
+<div style={{display:"flex",border:"1px solid red",width:"90%",}}>
+  
+    <p style={{margin:"10px 0px 10px 30px"}}>{e.quant}* ${e.final_price }</p>
+    <p style={{margin:"10px 0px 10px 30px"}}>${e.quant*e.final_price}</p>
+    <p>{}</p>
+    
+    
+       
+       
+   
+ 
+
+</div>
+
+
+
+))}
+    </div>
+       
+
+    </div>
+    )
 }
