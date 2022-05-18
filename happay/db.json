@@ -37,5 +37,15 @@
       "img_url": "https://react-coding-assignment.s3.ap-south-1.amazonaws.com/cards/black_card.png"
     }
   ],
-  "cart": []
+  "cart": [
+    {
+      "id": 2,
+      "quant": 1,
+      "name": "Travel Card",
+      "description": "This card is used for spending on Travel and hotel bookings",
+      "final_price": 20,
+      "original_price": 30,
+      "img_url": "https://react-coding-assignment.s3.ap-south-1.amazonaws.com/cards/blue_card.png"
+    }
+  ]
 }

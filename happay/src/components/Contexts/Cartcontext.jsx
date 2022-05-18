@@ -11,7 +11,7 @@ setCart(data);
 }
 
 
-return <CartContext.Provider value={{len,cart,handleLength}}>
+return <CartContext.Provider value={{len,cart,handleLength,setlen}}>
     {children}
 </CartContext.Provider>
 
