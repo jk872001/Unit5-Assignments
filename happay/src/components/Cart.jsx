@@ -17,6 +17,17 @@ handleLength();
 },[]);
 const updateqty = async(id,quant)=>{
     let data = {"quant":quant}
+    if(quant<1)
+    {
+        // const data=e;
+               fetch(`http://localhost:8080/cart/${data.id}`,{
+                   method:"DELETE"
+               })
+               
+getData();
+handleLength();
+    }
+    else{
     let response =  await fetch(`http://localhost:8080/cart/${id}`, {
                 method: "PATCH",
                 body: JSON.stringify(data),
@@ -29,6 +40,7 @@ const updateqty = async(id,quant)=>{
           let final = await res.json();
           console.log("final",final)
           setdata(final)
+        }
         // let final = await response.json();
     //    console.log("final",final)
             // handleLength();
@@ -44,11 +56,12 @@ async function getData() {
      setdata(data);
     //  console.log(data);
 }
-
+const sum=Data.reduce((a, c) => a + (c.quant * c.final_price), 0);
+const final= sum-18+5+2;
     return (
     
     <div className="main">
-    <div className="part1" style={{margin:"10px" ,border:"1px solid blue",width:"50%",justifyContent:"center",justifyItems:"center",alignItems:"center",alignContent:"center"}}>
+    <div className="part1" style={{margin:"10px" ,border:"1px solid blue",width:"50%",justifyContent:"center",justifyItems:"center",alignItems:"center",alignContent:"center",}}>
     {Data.map((e)=>(
 
       
@@ -56,22 +69,21 @@ async function getData() {
      
           
           
-          <div style={{display:"flex",border:"1px solid red",width:"90%",}}>
-            <p style={{margin:"10px 0px 10px 30px"}}>{e.id}</p>
-              <p style={{margin:"10px 0px 10px 30px"}}>{e.name}</p>
-              
-              
-                 
-                 <div style={{marginLeft:"80px",display:"flex",border:"1px solid red"}} >
-                 <p style={{margin:"10px 0px 10px 30px"}} onClick={()=>{updateqty(e.id,e.quant+1)
+          <div style={{display:"flex",border:"1px solid red",width:"90%",justifyContent:"space-evenly"}}>
+            <div style={{width:"100px"}}><p >{e.name}</p></div>
+            <div  style={{width:"100px"}}><p >${e.final_price}</p></div>
+            <div  style={{width:"150px",}}>
+            <div style={{display:"flex",border:"3px solid black",justifyContent:"space-evenly",height:"30px",alignItems:"center",justifyItems:"center",borderRadius:"10px",marginTop:"13px"}} >
+                 <p style={{width:"30px",color:"white",background:"black",cursor:"pointer"}} onClick={()=>{updateqty(e.id,e.quant+1)
                 //    handleLength();
                  }}>{"+"}</p>
-                 <p style={{margin:"10px 0px 10px 30px"}}>{e.quant}</p>
-                 <p style={{margin:"10px 0px 10px 30px"}} onClick={()=>{updateqty(e.id,e.quant-1)
+                 <p style={{width:"110px",marginLeft:"35%"}}>{e.quant}</p>
+                 <p style={{width:"30px",color:"white",background:"black",cursor:"pointer"}} onClick={()=>{updateqty(e.id,e.quant-1)
                 //    handleLength();
                  }}>{"-"}</p>
                  </div>
-             <button style={{margin:"10px 0px 10px 30px"}}
+            </div>
+            <div  style={{width:"150px"}}><button 
               onClick={()=>{
                  
                 const data=e;
@@ -81,7 +93,14 @@ async function getData() {
                
 getData();
 handleLength();
-            }}>Delete from Cart</button>
+            }}>Delete from Cart</button></div>
+              
+              
+              
+              
+                 
+                 
+             
            
         
      </div>
@@ -93,29 +112,23 @@ handleLength();
     <div className="part2" style={{margin:"10px" ,border:"1px solid blue",width:"50%",justifyContent:"center",justifyItems:"center",alignItems:"center",alignContent:"center"}}>
     <p>Price Details</p>
     {Data.map((e)=>(
-
-      
-     
-     
-          
-          
 <div style={{display:"flex",border:"1px solid red",width:"90%",}}>
   
     <p style={{margin:"10px 0px 10px 30px"}}>{e.quant}* ${e.final_price }</p>
     <p style={{margin:"10px 0px 10px 30px"}}>${e.quant*e.final_price}</p>
-    <p>{}</p>
-    
-    
-       
-       
    
- 
-
 </div>
 
 
 
+
 ))}
+<div >
+<p>Total Savings               -$18 </p>
+<p>Delivery Fees               $5 </p>
+<p>Taxes & Charges               $2 </p>
+<p>To Pay  {final}</p>
+</div>
     </div>
        
 

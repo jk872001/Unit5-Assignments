@@ -4,6 +4,8 @@ import { StyleDiv } from "./Mydiv";
 // import { Deal } from "./Deal";
 import { CartContext } from "./Contexts/Cartcontext";
 import { Cart } from "./Cart";
+import { borderColor } from "@mui/system";
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 // import { ThemeContext } from "../Contexts/ThemeContext";
 // import { AuthContext } from "../Contexts/loginContext";
 
@@ -18,11 +20,13 @@ useEffect(()=>{
 getData();
 handleLength()
 
+
 },[]);
 
 async function getData() {
     const data=await fetch("http://localhost:8080/item").then(d=>d.json());
      setdata(data);
+    //  alert("Item Added Successfully")
     //  console.log(data);
 }
 async function handleChange(e){
@@ -43,13 +47,13 @@ setdata(dat);
 function handleSelect(e){
     if(e.target.value=="low"){
 const data=[...Data].sort((a,b)=>{
-  return a.price-b.price;
+  return a.final_price-b.final_price;
 });
 setdata(data);
     }
     if(e.target.value=="high"){
       const data=[...Data].sort((a,b)=>{
-          return b.price-a.price;
+          return b.final_price-a.final_price;
       });
       setdata(data);
     }
@@ -60,20 +64,30 @@ setdata(data);
   
 
 
-    return (<div>
+    return (
+    <div>
         
         {/* <Deal/> */}
 
     
-        <select style={{backgroundColor:"lightgray",fontSize:"15px",marginLeft:"90%",marginTop:"30px"}} onChange={handleSelect} >
+        
+        <div >
+       <div style={{width:"95%",justifyContent:"center"}}>
+       <div style={{width:"300px",marginLeft:"40%"}}>
+           <h1>Most Popular</h1>
+           <div style={{display:"flex", marginLeft:"13%",color:"#1D7CBF"}}>
+               <div>--------</div>
+               <div><StarBorderIcon/></div>
+               <div>--------</div>
+        </div>       
+       </div>
+       </div>
+    
+       <select style={{backgroundColor:"lightgray",fontSize:"15px",marginLeft:"90%",marginTop:"30px"}} onChange={handleSelect} >
         <option value="sort">Sort</option>
         <option value="high" >High To Low</option>
         <option value="low">  Low To High</option>
         </select>
-
-        <div >
-
-    
 
          
  {/* <Filters onChange={handleChange}   >
@@ -89,20 +103,26 @@ setdata(data);
     <StyleDiv >{Data.map((e)=>(
 
       
-     <div style={{width:"70%",border:"1px solid black"}}>
+     <div style={{width:"64%"}}>
           
-            <img width={"200px"} height={"120px"} src={e.img_url} alt=""/>
+            <img width={"250px"} height={"150px"} src={e.img_url} alt=""/>
           
           
          <div >
-             <h4>{e.name}</h4>
-             <p>Rs.{e.final_price}</p>
-             <p style={{textDecoration:"line-through"}}>
+         <div style={{display:"flex",justifyContent:"space-between"}}>
+         <div>
+             <p style={{color:"black",fontSize:"18px",fontWeight:"bold"}}>{e.name}</p>
+             </div>
+             <div style={{display:"flex",}}>
+             <p style={{textDecoration:"line-through",color:"gray",marginRight:"15px",fontSize:"15px",fontWeight:"bold"}}>
 
-                Rs.{e.original_price}</p>
-                <p>{e.description}</p>
+                ${e.original_price}</p>
+                <p style={{color:"black",fontSize:"18px",fontWeight:"bold",marginBottom:"20px"}}>${e.final_price}</p>
+                </div>
+            </div>
+                <p style={{color:"gray",fontSize:"15px",marginBottom:"20px"}}>{e.description}</p>
                
-             <button
+             <button style={{color:"#1D7CBF",fontSize:"15px",width:"100%",height:"40px",border:"3px solid #1D7CBF",background:"white",borderColor:"#1D7CBF",cursor:"pointer",borderRadius:"10px"}}
               onClick={()=>{
                  
                   getData()

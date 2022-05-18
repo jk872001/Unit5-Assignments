@@ -4,11 +4,13 @@ const StyleDiv=styled.div`
 margin-top:40px;
 display:grid;
 grid-template-columns:repeat(3,1fr);
+grid-gap:25px;
 padding: 15px;
-width: 100%;
+width: 95%;
+overflow-x:hidden;
 justify-content:center;
 justify-items:center;
-border: 1px solid red;
+/* border: 1px solid red; */
 `;
 const UnderDiv=styled.div`
 
