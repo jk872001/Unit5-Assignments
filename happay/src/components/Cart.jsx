@@ -8,6 +8,7 @@ import  "./Cart.css";
 export const Cart=()=>{
     const [Data,setdata]=useState([]);
     const {handleLength}=useContext(CartContext);
+    const {len}=useContext(CartContext);
     // const {Theme}=useContext(ThemeContext);
     // const {isAuth}=useContext(AuthContext)
 
@@ -59,7 +60,8 @@ async function getData() {
 const sum=Data.reduce((a, c) => a + (c.quant * c.final_price), 0);
 const final= sum-18+5+2;
     return (
-    
+        <div>
+    { len===0 ? <p>Cart is empty</p>:
     <div className="main">
     <div className="part1" style={{margin:"10px" ,border:"1px solid blue",width:"50%",justifyContent:"center",justifyItems:"center",alignItems:"center",alignContent:"center",}}>
     {Data.map((e)=>(
@@ -83,7 +85,8 @@ const final= sum-18+5+2;
                  }}>{"-"}</p>
                  </div>
             </div>
-            <div  style={{width:"150px"}}><button 
+            <div  style={{width:"150px",marginLeft:"10%",marginTop:"2%"}}><button 
+            style={{width:"80%",height:"30px",borderRadius:"10px",color:"white",background:"#1D7CBF",cursor:"pointer"}}
               onClick={()=>{
                  
                 const data=e;
@@ -123,15 +126,29 @@ handleLength();
 
 
 ))}
+
 <div >
 <p>Total Savings               -$18 </p>
 <p>Delivery Fees               $5 </p>
 <p>Taxes & Charges               $2 </p>
 <p>To Pay  {final}</p>
+<button  style={{width:"30%",height:"40px",borderRadius:"10px",color:"white",background:"#1D7CBF",cursor:"pointer"}}
+ onClick={()=>{
+     alert("Order Placed");
+     len=0;
+     window.location.href="./cards"
+ }}
+>
+    Place Order
+</button>
 </div>
+
+
     </div>
        
 
+    </div>
+    }
     </div>
     )
 }
