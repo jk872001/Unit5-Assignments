@@ -71,21 +71,25 @@ export const Cart = () => {
             className="part1"
             style={{
               margin: "10px",
-              border: "1px solid blue",
+              border: "1px solid black",
               width: "50%",
               justifyContent: "center",
               justifyItems: "center",
               alignItems: "center",
               alignContent: "center",
+              
             }}
           >
+          <div style={{fontWeight:"bold"}}>&emsp;&emsp;&emsp;Item &emsp;&emsp;&nbsp;Price &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Quantity </div>
             {Data.map((e) => (
               <div
                 style={{
                   display: "flex",
-                  border: "1px solid red",
+                //   border: "1px solid red",
                   width: "90%",
                   justifyContent: "space-evenly",
+                  
+                  margin: "15px 0px 15px 35px",
                 }}
               >
                 <div style={{ width: "100px" }}>
@@ -172,20 +176,22 @@ export const Cart = () => {
             className="part2"
             style={{
               margin: "10px",
-              border: "1px solid blue",
-              width: "50%",
+              padding:"10px",
+              width: "30%",
               justifyContent: "center",
               justifyItems: "center",
               alignItems: "center",
               alignContent: "center",
+              background:"#EDF2F5",
             }}
           >
-            <p>Price Details</p>
+            <p style={{margin:"15px 0px 15px 20px",fontWeight:"bold"}}>Price Details</p>
+            <div style={{fontWeight:"bold",width:"270px",marginLeft:"30px",color:"blue"}}><hr/></div>
             {Data.map((e) => (
               <div
                 style={{
                   display: "flex",
-                  border: "1px solid red",
+                  
                   width: "50%",
                   justifyContent:"space-between"
                 }}
@@ -198,12 +204,14 @@ export const Cart = () => {
                 </p>
               </div>
             ))}
-               <div><hr/></div>
+               <div style={{fontWeight:"bold",width:"270px",marginLeft:"30px",color:"blue"}}><hr/></div>
             <div>
-              <p>&emsp;&emsp;Total Savings &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp; -$18 </p>
-              <p>&emsp;&emsp;Delivery Fees &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; $5 </p>
-              <p>&emsp;&emsp;Taxes & Charges &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; $2 </p>
-              <p>&emsp;&emsp;To Pay &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <span>${final}</span></p>
+              <p style={{margin:"15px 0px 15px 0px"}}>&emsp;&emsp;Total Savings &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp; -$18 </p>
+              <p style={{margin:"15px 0px 15px 0px"}}>&emsp;&emsp;Delivery Fees &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; $5 </p>
+              <p style={{margin:"15px 0px 15px 0px"}}>&emsp;&emsp;Taxes & Charges &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; $2 </p>
+              <div style={{fontWeight:"bold",width:"270px",marginLeft:"30px",color:"blue"}}><hr/></div>
+              <p style={{margin:"15px 0px 15px 0px",fontWeight:"bold"}}>&emsp;&emsp;To Pay &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 
+              <span style={{fontWeight:"bold",fontSize:"25px"}}>${final}</span></p>
               <button
                 style={{
                   width: "50%",
