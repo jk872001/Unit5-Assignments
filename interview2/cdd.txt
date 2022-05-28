@@ -1,0 +1,9 @@
+1. calculate the age of the amployee
+2. calculate the total no of months employee worked in an company
+3. total salary = bassic salary + bonus - insurance - professional tax
+
+name
+age
+total no of months
+total salary
+country

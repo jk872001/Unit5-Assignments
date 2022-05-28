@@ -2,12 +2,30 @@
   "users": [
     {
       "name": "jitesh kumar",
-      "age": "21",
+      "age": "45",
       "address": "ram nagar,dharuhera",
-      "department": "IT",
-      "salary": "250000",
-      "martialStatus": "No",
+      "department": "cdcdc",
+      "salary": "600000",
+      "martialStatus": "no",
       "id": 1
+    },
+    {
+      "name": "jitesh kumar",
+      "age": "45",
+      "address": "ram nagar,dharuhera",
+      "department": "cdcdc",
+      "salary": "600000",
+      "martialStatus": "no",
+      "id": 2
+    },
+    {
+      "name": "jitesh kumar",
+      "age": "45",
+      "address": "ram nagar,dharuhera",
+      "department": "cdcdc",
+      "salary": "600000",
+      "martialStatus": "no",
+      "id": 3
     }
   ]
 }

@@ -176,7 +176,7 @@ onChange={handleChange}
 
          </Col>
          <Col md={10}>
-         <Table bordered hover>
+         <table className='content-table'>
 <thead>
 <tr>
 <th>No.</th>
@@ -192,7 +192,7 @@ onChange={handleChange}
 </thead>
 {data && data.map((item, index) => (
 <tbody key={index}>
-<tr>
+<tr className='active-row'>
 <td>{index+1}</td>
 <td>{item.name}</td>
 <td>{item.age}</td>
@@ -219,7 +219,7 @@ Delete
 </tr>
 </tbody>
 ))}
-</Table>
+</table>
 
          </Col>
          </Row>
