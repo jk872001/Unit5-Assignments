@@ -1,37 +1,36 @@
 body{
-  background-color: yellow;
+  background-color: white;
 }
 
 .container {
-  width: 30%;
+  width: 32%;
   margin:auto;
   margin-top: 5%;
   border: 2px solid blue;
-  height: 400px;
+  height: 450px;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  background-color: #fff;
+  background-color: #4C5272;
 }
 
-input{
-  border: 2px solid black;
-  width: 70%;
-  height: 35px;
-  margin: 25px 0px 25px 50px;
-  border-radius: 15px;
-  
+.inner{
+ margin: 25px 0px 25px 0px;
+  /* border: 1px solid black; */
   
 }
 button{
-  margin: 10px 0px 10px 140px;
-  width: 30%;
-  font-size: 20px;
-  border-radius: 5px;
+  width: 80%;
+  margin: 30px 0px 5px 40px;
+ 
   border: 2px solid black;
+  border-radius: 15px;
+  height: 35px;
+  background-color: #1059FE;
+  color: white;
   cursor: pointer;
-  background-color: orange;
+  
 }
 .fail{
   color: red;
@@ -46,6 +45,47 @@ button{
   margin: 5px 0px 5px 80px;
 }
 .register{
-  margin-left: 100px;
+ 
+  display: flex;
 }
   
+.input_box{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+ 
+  /* border: 2px solid blue; */
+  
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.input_box input{
+  width: 98%;
+  margin: 5px 0px 5px 5px;
+ 
+  border: 2px solid black;
+  border-radius: 15px;
+  height: 30px;
+  background-color: #a8aed6;
+  color: black;
+  font-size: 20px;
+}
+.input_box label{
+  font-size: 15px;
+  /* font-weight: bold; */
+  color:white
+}
+
+.register button{
+  width: 50%;
+  margin: 30px 0px 5px 10px;
+ 
+  border: 2px solid black;
+  border-radius: 15px;
+  height: 35px;
+  background-color: #1059FE;
+  color: white;
+  cursor: pointer;
+}
