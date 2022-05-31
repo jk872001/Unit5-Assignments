@@ -2,7 +2,7 @@ body{
   background-color: white;
 }
 
-.container {
+.containerbox {
   width: 32%;
   margin:auto;
   margin-top: 5%;
@@ -16,12 +16,12 @@ body{
   
 }
 
-.inner{
+.innerbox{
  margin: 25px 0px 25px 0px;
   /* border: 1px solid black; */
   
 }
-button{
+.button {
   width: 80%;
   margin: 30px 0px 5px 40px;
  
@@ -83,10 +83,14 @@ button{
   width: 50%;
   margin: 30px 0px 5px 10px;
  
-  /* border: 2px solid black; */
-  border-radius: 15px;
+  border:  none;
+  /* border-radius: 15px; */
   height: 35px;
-  background-color: #1059FE;
+  background-color: #4C5272;
   color: white;
   cursor: pointer;
+}
+.register button:hover{
+  border-bottom: 2px solid #1059FE;
+  
 }

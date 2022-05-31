@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import { validEmail ,validPassword,validPassword2} from './Components/Regrex';
+import {ToggleSwitch} from './Components/ToggleSwitch';
 
 function App() {
   const[email,setEmail] = useState('');
@@ -78,14 +79,14 @@ function App() {
 
   // console.log(emailError,pwdError)
   return (
-    <div className='container'>
+    <div className='containerbox'>
     <div className='register'>
       <button onClick={()=>{setSignin(true)}}>SIGN IN</button>
       <button onClick={()=>{setSignin(false)}}>SIGN UP</button>
       
     </div>
     {signin?
-      <div className='inner'>
+      <div className='innerbox'>
       <div className='input_box'>
       <label>USERNAME</label>
        <input
@@ -105,9 +106,10 @@ function App() {
           />
 
 </div>
+<ToggleSwitch label="KEEP ME SIGNED IN" />
           <div>
           
-            <button onClick={validate2}>SIGN IN</button>
+            <button  className='button' onClick={validate2}>SIGN IN</button>
             
             
           </div>
@@ -125,7 +127,7 @@ function App() {
 
 
 
-          </div>:<div className='inner'>
+          </div>:<div className='innerbox'>
           <div className='input_box'>
           <label>FULL NAME</label>
       <input
@@ -166,7 +168,7 @@ function App() {
          
           <div>
           {/* <button onClick={showtoggle}>{show?<p>Hide</p>:<p>Show</p>} </button> */}
-            <button onClick={validate}>SIGN UP</button>
+            <button  className='button' onClick={validate}>SIGN UP</button>
            
           </div>
           {match?
