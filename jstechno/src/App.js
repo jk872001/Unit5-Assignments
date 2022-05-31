@@ -13,20 +13,45 @@ function App() {
   const [pwdError,setPwdError] = useState(false);
   const [pwd2Error,setPwd2Error] = useState(false);
   const[msg,setMsg]=useState(false);
+  const[msg2,setMsg2]=useState(false);
   const[show,setShow]=useState(false);
   const [signin,setSignin]=useState(false);
+ const [match,setMatch]=useState(false);
   const showtoggle=()=>{
     setShow(!show);
   }
 
   const validate=()=>{
-    if(!validEmail.test(email)){
-      setEmailErr(true);
+    if(password!==conpwd)
+    {
+         setMatch(true);
+          return;
     }
-    if(!validPassword.test(password)){
+
+
+    if(!validEmail.test(email) || !validPassword.test(password)){
+     
+      setEmailErr(true);
       setPwdError(true);
+      setEmail(() => "")
+      setPassword(() => "")
+      setFullname(() => "")
+     setConpwd(() => "")
+    }
+   
+    else
+    {
+      setMatch(false);
+      setPwdError(false);
+      setEmailErr(false);
+      setMsg(true);
+     setEmail(() => "")
+    setPassword(() => "")
+    setFullname(() => "")
+   setConpwd(() => "")
     }
    setMsg(true);
+  
    setEmail(() => "")
     setPassword(() => "")
     setFullname(() => "")
@@ -34,16 +59,24 @@ function App() {
   }
 
   const validate2=()=>{
-    
+    console.log("hi")
     if(!validPassword2.test(password2)){
       setPwd2Error(true);
+      setPassword2(() => "")
+      setUsername(() => "")
+      console.log("hi2")
+    }
+    else{
+      setPwd2Error(false);
+      setMsg2(true);
+      setPassword2(() => "")
+      setUsername(() => "")
+      console.log("hi3")
     }
     
-    setPassword2(() => "")
-    setUsername(() => "")
   }
 
-  console.log(emailError,pwdError)
+  // console.log(emailError,pwdError)
   return (
     <div className='container'>
     <div className='register'>
@@ -73,16 +106,19 @@ function App() {
 
 </div>
           <div>
-          {/* <button onClick={showtoggle}>{show?<p>Hide</p>:<p>Show</p>} </button> */}
+          
             <button onClick={validate2}>SIGN IN</button>
-            {(password2===false&& msg===true)? <button >Dashboard</button>:null}
+            
             
           </div>
          <div className='fail'>
          {pwd2Error && <p>Invalid Username or Password</p>}
+        </div>
         
-         
+        <div className='success'>
+          {( pwd2Error===false && msg2===true) ? <p> Login Successfully</p> : null}
           </div>
+
           
 
 
@@ -133,6 +169,12 @@ function App() {
             <button onClick={validate}>SIGN UP</button>
            
           </div>
+          {match?
+            <div className='fail'>
+         <p>Password not match</p>
+        
+         
+          </div>:null}
          <div className='fail'>
          {(emailError || pwdError)&&<p>Invalid Email or Password</p>}
         
