@@ -1,0 +1,96 @@
+body{
+    background-color: white;
+  }
+  
+  .containerbox {
+    width: 32%;
+    margin:auto;
+    margin-top: 5%;
+    /* border: 2px solid blue; */
+    height: 430px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+    background-color: #4C5272;
+    
+  }
+  
+  .innerbox{
+   margin: 25px 0px 25px 0px;
+    /* border: 1px solid black; */
+    
+  }
+  .button {
+    width: 80%;
+    margin: 30px 0px 5px 40px;
+   
+    border: 1px solid #1059FE ;
+    border-radius: 15px;
+    height: 35px;
+    background-color: #1059FE;
+    color: white;
+    cursor: pointer;
+    
+  }
+  .fail{
+    color: red;
+    font-size: 20px;
+    margin: 5px 0px 5px 80px;
+    font-weight: bold;
+  }
+  .success{
+    color: green;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px 0px 5px 80px;
+  }
+  .register{
+   
+    display: flex;
+  }
+    
+  .input_box{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+   
+    /* border: 2px solid blue; */
+    
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+  }
+  .input_box input{
+    width: 98%;
+    margin: 5px 0px 5px 5px;
+   
+    border: none;
+    border-radius: 15px;
+    height: 30px;
+    background-color: #a8aed6;
+    color: black;
+    font-size: 20px;
+  }
+  .input_box label{
+    font-size: 15px;
+    /* font-weight: bold; */
+    color:white
+  }
+  
+  .register button{
+    width: 50%;
+    margin: 30px 0px 5px 10px;
+   
+    border:  none;
+    /* border-radius: 15px; */
+    height: 35px;
+    background-color: #4C5272;
+    color: white;
+    cursor: pointer;
+  }
+  .register button:hover{
+    border-bottom: 2px solid #1059FE;
+    
+  }
