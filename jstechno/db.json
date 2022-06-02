@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "full_name": "Jitesh",
+      "email": "admin@gmail.com",
+      "password": "Ok123@321123",
+      "confirm_password": "Ok123@321123",
+      "id": 1
+    }
+  ]
+}

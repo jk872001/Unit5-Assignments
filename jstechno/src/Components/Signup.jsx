@@ -1,63 +1,76 @@
     import React from 'react'
-    import { useState } from 'react';
+    import { useState,useEffect } from 'react';
     import "./Both.css";
     import {validEmail ,validPassword} from './Regrex';
+    import axios from 'axios';
+
+const initialstate=
+{
+full_name:"",
+email:"",
+password:"",
+confirm_password:"",
+};
 
     export const Signup = () => {
-        const[email,setEmail] = useState('');
-        const[fullname,setFullname] = useState('');
-        const [password,setPassword] = useState('');
-        const [conpwd,setConpwd] = useState('');
-        const [emailError,setEmailErr] = useState(false);
-        const [pwdError,setPwdError] = useState(false);
-        const[msg,setMsg]=useState(false);
-        const [match,setMatch]=useState(false);
+  const [state, setState]= useState(initialstate);
+  const [data, setData] = useState([]);
+  const {full_name,email,password,confirm_password} =state;
+  const [emailError,setEmailErr] = useState(false);
+  const [pwdError,setPwdError] = useState(false);
+  const [match,setMatch]=useState(false);
+  const api="http://localhost:8080/users"
 
+        const handleChange =(e) =>{
+        let { name, value }= e.target;
+        setState({ ...state, [name]: value });
+        };
 
-        // Validation on clicking validate
-    const validate=()=>{
-        if(password!==conpwd)
-        {
-            setMatch(true);
-            return;
-        }
-
-
-        if(!validEmail.test(email) || !validPassword.test(password)){
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(password!==confirm_password)
+            {
+                setPwdError(false);
+                setEmailErr(false);
+                setMatch(true);
+                setState(()=>initialstate);
+                return;
+            }
             
-        setEmailErr(true);
-        setPwdError(true);
-        setEmail(() => "")
-        setPassword(() => "")
-        setFullname(() => "")
-        setConpwd(() => "")
-        }
-    
-        else
+        else if (!full_name || !email || !password || !confirm_password)
+         {
+        alert("Please fill all input field");
+        } 
+        else if(!validEmail.test(email) || !validPassword.test(password))
         {
-        setMatch(false);
-        setPwdError(false);
-        setEmailErr(false);
-        setMsg(true);
-        setEmail(() => "")
-        setPassword(() => "")
-        setFullname(() => "")
-    setConpwd(() => "")
-        }
-    
-    }
-
-
-
+            setMatch(false);
+            setEmailErr(true);
+            setPwdError(true);
+            setState(()=>initialstate);
+            return;
+            }
+        else 
+        {
+            setEmailErr(false);
+            setPwdError(false);
+          axios.post(`${api}`, state);
+             alert("Added Successfully");
+             setState(()=>initialstate);
+          }
+          };
+        
+      
 
     return (
         <div className='innerbox'>
+        
             <div className='input_box'>
             <label>FULL NAME</label>
         <input
             type="text"
-            value={fullname}
-            onChange={(e)=>setFullname(e.target.value)}
+            name='full_name'
+            value={full_name}
+            onChange={handleChange}
             
             />
             </div>
@@ -65,48 +78,46 @@
         <label>EMAIL</label>
         <input
             type="email"
-            
+            name='email'
             value={email}
-            onChange={(e)=>setEmail(e.target.value)}
+            onChange={handleChange}
             />
             </div>
             <div className='input_box'>
             <label>PASSWORD</label>
             <input
             type="password"
-            
+            name='password'
             value={password}
-            onChange={(e)=>setPassword(e.target.value)}
+            onChange={handleChange}
             />
             </div>
             <div className='input_box'>
             <label>CONFIRM PASSWORD</label>
             <input
             type="password"
-            value={conpwd}
-            onChange={(e)=>setConpwd(e.target.value)}
-            
-            
+            name='confirm_password'
+            value={confirm_password}
+            onChange={handleChange}
             />
             </div>
             
             <div>
-            <button  className='button' onClick={validate}>SIGN UP</button>
+            <button  className='button' onClick={handleSubmit}>SIGN UP</button>
             </div>
 
             {
                 match?
                 <div className='fail'>
-                <p>Password not match</p>
+                <p>Passwords are not matching</p>
                 </div>:null}
+
                 <div className='fail'>
                 {(emailError || pwdError)&&<p>Invalid Email or Password</p>
             }
             
             </div>
-            <div className='success'>
-            {(emailError===false && pwdError===false && msg===true) ? <p>Successful Registeration</p> : null}
-            </div>
+            
             
             </div>
     )
